@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hello-world-deployment
+labels:
+app:hello-world-python
+spec:
+  selector:
+    matchLabels:
+      app: nginx
+  replicas: 7 # Desired number of NGINX pods
+  template:
+    metadata:
+      labels:
+        app: nginx
+    spec:
+      containers:
+      - name: hello-world-python
+        image: santhoshNC/helloworld-demo-python:v1 # Use a specific NGINX image version
+        ports:
+        - containerPort: 8080
